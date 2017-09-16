@@ -1,61 +1,76 @@
 'use strict'
 const quiz = {
-        trivial: [{
-                pregunta: "3 * 2",
-                opciones: [2, 5, 6, 4],
-                rptaCorrecta: 6,
-                turespuesta: undefined
-            },
-            {
-                pregunta: "10 * 4",
-                opciones: [2, 5, 6, 4],
-                rptaCorrecta: 6,
-                turespuesta: undefined
-            },
-            {
-                pregunta: "3 * 3",
-                opciones: [2, 5, 6, 9],
-                rptaCorrecta: 9,
-                turespuesta: undefined
-            },
-            {
-                pregunta: "2 * 2",
-                opciones: [2, 5, 6, 4],
-                rptaCorrecta: 4,
-                turespuesta: undefined
-            },
-            {
-                pregunta: "9 * 90",
-                opciones: [2, 5, 18, 4],
-                rptaCorrecta: 18,
-                turespuesta: undefined
-            }
-        ],
-        preguntaInicio: 0,
-        iniciaQuiz: () => {
-            console.log(quiz.preguntaInicio)
-            console.log(quiz.trivial)
-            quiz.dibujarHTML();
-            quiz.configuracion();
+    trivial: [{
+            pregunta: "¿Cual fue el primer lenguaje de Programación?",
+            opciones: ['tarjetas Perforadas', 'dev c++', 'FORTRAN ', 'Cobol'],
+            srcImg: '',
+            rptaCorrecta: 6,
+            turespuesta: undefined
         },
-        configuracion: () => {
-            $('.col.col-xs-3').on("click", quiz.siguientePregunta);
+        {
+            pregunta: "JQuery es: ",
+            opciones: [
+                'Es un framework de javaScript',
+                'Es un IDE',
+                'Es una libreria de javascript',
+                'Es una API'
+            ],
+            srcImg: '',
+            rptaCorrecta: 6,
+            turespuesta: undefined
         },
-        siguientePregunta: () => {
-
-            quiz.preguntaInicio++;
-            console.log(quiz.preguntaInicio)
-            if (quiz.preguntaInicio >= quiz.trivial.length) {
-                quiz.preguntaInicio = 0;
-                console.log("entro")
-            } else {
-                quiz.limpiarCuestionario();
-                quiz.iniciaQuiz();
-            }
+        {
+            pregunta: "¿Quienes son Larry Page y Sergey Brin?",
+            opciones: [
+                'Los creadores del motor de Google',
+                'Ganadores del premio novel de la paz',
+                'Compañeros Mark Zuckerberg',
+                'Fundadores de Amazon'
+            ],
+            srcImg: '',
+            rptaCorrecta: 9,
+            turespuesta: undefined
         },
-        dibujarHTML: () => {
-            $('#cuestionario').append(
-                `<div class="row justify-content-xs-center ">\
+        {
+            pregunta: "¿¿Qué año se creo facebook?",
+            opciones: [
+                'En febrero de 2004',
+                'entre 2008 - 2010',
+                '10 marzo 2001',
+                '2005'
+            ],
+            srcImg: '',
+            rptaCorrecta: 4,
+            turespuesta: undefined
+        },
+        {
+            pregunta: "Qué paso con YAHOO!",
+            opciones: ['fue comprada por google', 'fue comprada por microsoft', '', 4],
+            srcImg: '',
+            rptaCorrecta: 18,
+            turespuesta: undefined
+        }
+    ],
+    preguntaInicio: 0,
+    iniciaQuiz: () => {
+        quiz.dibujarHTML();
+        quiz.configuracion();
+    },
+    configuracion: () => {
+        $('.col.col-xs-3').on("click", quiz.siguientePregunta);
+    },
+    siguientePregunta: () => {
+        quiz.preguntaInicio++;
+        if (quiz.preguntaInicio >= quiz.trivial.length) {
+            quiz.preguntaInicio = 0;
+        } else {
+            quiz.limpiarCuestionario();
+            quiz.iniciaQuiz();
+        }
+    },
+    dibujarHTML: () => {
+        $('#cuestionario').append(
+            `<div class="row justify-content-xs-center ">\
                 <div class="col col-xs-8">${quiz.trivial[quiz.preguntaInicio].pregunta}</div>\
             </div>\
             <div class="row justify-content-xs-center ">
@@ -66,11 +81,10 @@ const quiz = {
             <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[2]}</div>\
             <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[3]}</div>\
             </div>`
-            );
-        },
-        limpiarCuestionario: () => {
-            $('#cuestionario').empty();
-        }
+        );
+    },
+    limpiarCuestionario: () => {
+        $('#cuestionario').empty();
     }
-    //console.log(quiz.dibujarHTML());
+}
 $(document).ready(quiz.iniciaQuiz)
