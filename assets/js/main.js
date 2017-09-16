@@ -40,7 +40,6 @@ const quiz = {
         },
         configuracion: () => {
             $('.col.col-xs-3').on("click", quiz.siguientePregunta);
-
         },
         siguientePregunta: () => {
 
@@ -50,11 +49,11 @@ const quiz = {
                 quiz.preguntaInicio = 0;
                 console.log("entro")
             } else {
+                quiz.limpiarCuestionario();
                 quiz.iniciaQuiz();
             }
         },
         dibujarHTML: () => {
-            //console.log(quiz.trivial[0].pregunta)
             $('#cuestionario').append(
                 `<div class="row justify-content-xs-center ">\
                 <div class="col col-xs-8">${quiz.trivial[quiz.preguntaInicio].pregunta}</div>\
@@ -69,8 +68,8 @@ const quiz = {
             </div>`
             );
         },
-        opcionesHTML: () => {
-
+        limpiarCuestionario: () => {
+            $('#cuestionario').remove();
         }
     }
     //console.log(quiz.dibujarHTML());
