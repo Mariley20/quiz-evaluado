@@ -2,9 +2,9 @@
 const quiz = {
     trivial: [{
             pregunta: "¿Cual fue el primer lenguaje de Programación?",
-            opciones: ['tarjetas Perforadas', 'dev c++', 'FORTRAN ', 'Cobol'],
+            opciones: ['tarjetas Perforadas / ADA', 'dev c++', 'FORTRAN ', 'Cobol'],
             srcImg: '',
-            rptaCorrecta: 6,
+            rptaCorrecta: 'tarjetas Perforadas / ADA',
             turespuesta: undefined
         },
         {
@@ -28,7 +28,7 @@ const quiz = {
                 'Fundadores de Amazon'
             ],
             srcImg: '',
-            rptaCorrecta: 9,
+            rptaCorrecta: 'Los creadores del motor de Google',
             turespuesta: undefined
         },
         {
@@ -40,19 +40,19 @@ const quiz = {
                 '2005'
             ],
             srcImg: '',
-            rptaCorrecta: 4,
+            rptaCorrecta: 'En febrero de 2004',
             turespuesta: undefined
         },
         {
             pregunta: "Quien es Maritza Meyers",
             opciones: [
-                'CEO de Yahoo!',
+                'CEO de Yahoo!, y quien logro triplicar su valor.',
                 'No fue la primera ingeniera mujer del equipo de GOOGLE',
                 'Es una atleta reconocida mundialmente',
                 'Es una modelo de la revista'
             ],
             srcImg: '',
-            rptaCorrecta: 18,
+            rptaCorrecta: 'CEO de Yahoo!, y quien logro triplicar su valor.',
             turespuesta: undefined
         }
     ],
