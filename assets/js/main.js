@@ -7,7 +7,7 @@ const quiz = {
                 turespuesta: undefined
             },
             {
-                pregunta: "3 * 2",
+                pregunta: "10 * 4",
                 opciones: [2, 5, 6, 4],
                 rptaCorrecta: 6,
                 turespuesta: undefined
@@ -25,7 +25,7 @@ const quiz = {
                 turespuesta: undefined
             },
             {
-                pregunta: "9 * 2",
+                pregunta: "9 * 90",
                 opciones: [2, 5, 18, 4],
                 rptaCorrecta: 18,
                 turespuesta: undefined
@@ -69,7 +69,7 @@ const quiz = {
             );
         },
         limpiarCuestionario: () => {
-            $('#cuestionario').remove();
+            $('#cuestionario').empty();
         }
     }
     //console.log(quiz.dibujarHTML());
