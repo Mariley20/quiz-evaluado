@@ -98,6 +98,9 @@ const quiz = {
     limpiarCuestionario: () => {
         $('#cuestionario').empty();
         $('#imagen').empty();
+    },
+    finJuegoHTML: () => {
+
     }
 }
 $(document).ready(quiz.iniciaQuiz)
