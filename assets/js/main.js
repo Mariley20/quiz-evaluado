@@ -44,8 +44,13 @@ const quiz = {
             turespuesta: undefined
         },
         {
-            pregunta: "Qué paso con YAHOO!",
-            opciones: ['fue comprada por google', 'fue comprada por microsoft', '', 4],
+            pregunta: "Quien es Maritza Meyers",
+            opciones: [
+                'CEO de Yahoo!',
+                'No fue la primera ingeniera mujer del equipo de GOOGLE',
+                'Es una atleta reconocida mundialmente',
+                'Es una modelo de la revista'
+            ],
             srcImg: '',
             rptaCorrecta: 18,
             turespuesta: undefined
