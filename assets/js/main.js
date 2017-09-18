@@ -63,7 +63,7 @@ const quiz = {
         quiz.configuracion();
     },
     configuracion: () => {
-        $('.col.col-xs-3').on("click", quiz.siguientePregunta);
+        $('.col-xl-6').on("click", quiz.siguientePregunta);
     },
     siguientePregunta: () => {
         quiz.preguntaInicio++;
@@ -76,21 +76,21 @@ const quiz = {
         }
     },
     dibujarHTML: () => {
-        $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid' id="image">`)
+        $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid' id="imagen">`)
         $('#cuestionario').append(
             `<div class="progress">\
                   <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
             </div>\
             <div class="row justify-content-xs-center ">\
-                <div class="col col-xs-8">${quiz.trivial[quiz.preguntaInicio].pregunta}</div>\
+                <div class="col-xl-8">${quiz.trivial[quiz.preguntaInicio].pregunta}</div>\
             </div>\
             <div class="row justify-content-xs-center ">
-                <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[0]}</div>\
-                <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[1]}</div>\
+                <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[0]}</div>\
+                <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[1]}</div>\
             </div>\
             <div class="row justify-content-xs-center ">
-            <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[2]}</div>\
-            <div class="col col-xs-3">${quiz.trivial[quiz.preguntaInicio].opciones[3]}</div>\
+            <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[2]}</div>\
+            <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[3]}</div>\
             </div>`
         );
         quiz.incrementoPorcentaje += 20;
