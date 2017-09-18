@@ -124,16 +124,12 @@ const quiz = {
         for (var i = 0; i < sessionStorage.length; i++) {
             let pregunta = sessionStorage.key(i);
             let respuesta = sessionStorage.getItem(pregunta);
-            $("#cuestionario").append(`<div><p>${pregunta}: ${respuesta}</p></div>`);
+            $("#cuestionario").append(`<div><p>${pregunta}:<strong> ${respuesta}</strong></p></div>`);
         }
     },
     comprobarRespuestas: () => {
         quiz.limpiarCuestionario();
         $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
-        $('#cuestionario').append(`<div class="progress">\
-            <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
-            </div>\
-            <h2>${quiz.rptasCorrectas} de ${quiz.trivial.length}</h2>`);
         for (var i = 0; i < sessionStorage.length; i++) {
             let pregunta = sessionStorage.key(i);
             let respuesta = sessionStorage.getItem(pregunta);
@@ -152,6 +148,10 @@ const quiz = {
             }
         }
         $('#cuestionario').append(`<div><button id='jugar'>Jugar de Nuevo</button></div>`);
+        $('#cuestionario').prepend(`<div class="progress">\
+        <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+        </div>\
+        <h2>${quiz.rptasCorrectas} correcta(s) de ${quiz.trivial.length} preguntas</h2>`);
         quiz.incrementoPorcentaje = 0;        
         quiz.configuracion();
     },
