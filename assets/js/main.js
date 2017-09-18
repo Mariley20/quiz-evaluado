@@ -59,7 +59,7 @@ const quiz = {
     incrementoPorcentaje: 0,
     preguntaInicio: 0,
     iniciaQuiz: () => {
-        quiz.dibujarHTML();
+        quiz.preguntasHTML();
         quiz.configuracion();
     },
     configuracion: () => {
@@ -69,19 +69,20 @@ const quiz = {
         let respuesta = event.target.textContent;
         quiz.guardarDatos(respuesta)
         quiz.preguntaInicio++;
+        quiz.limpiarCuestionario();
         if (quiz.preguntaInicio >= quiz.trivial.length) {
+            quiz.respuestasHTML();
             quiz.preguntaInicio = 0;
             quiz.incrementoPorcentaje = 0;
         } else {
-            quiz.limpiarCuestionario();
             quiz.iniciaQuiz();
         }
     },
-    guardarDatos: (respuesta) =>{
-        localStorage.setItem(quiz.trivial[quiz.preguntaInicio].pregunta, respuesta);
+    guardarDatos: (respuesta) => {
+        sessionStorage.setItem(quiz.trivial[quiz.preguntaInicio].pregunta, respuesta);
     },
-    dibujarHTML: () => {
-        $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid' id="imagen">`)
+    preguntasHTML: () => {
+        $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid'>`)
         $('#cuestionario').append(
             `<div class="progress">\
                   <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
@@ -104,8 +105,18 @@ const quiz = {
         $('#cuestionario').empty();
         $('#imagen').empty();
     },
-    htmlFinal : () =>{
-        $('#cuestionario').append(``)
+    respuestasHTML: () => {
+        $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
+        $('#cuestionario').append(`<div class="progress">\
+        <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+        </div>`);
+        for (var i = 0; i < sessionStorage.length; i++) {
+            let pregunta = sessionStorage.key(i);
+            let respuesta = sessionStorage.getItem(pregunta);
+            $("#cuestionario").append(`<div><label>${pregunta}</label>
+			<p>${respuesta}</p></div>`);
+        }
+       
     }
 }
 $(document).ready(quiz.iniciaQuiz)
