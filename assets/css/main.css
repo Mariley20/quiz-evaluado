@@ -66,7 +66,12 @@ h2 {
     border: 1px solid #4b4668;
     padding: 6px 44px 6px 14px;
     width: 100%;
+    cursor: pointer;
     transition: background-color .3s linear, border-color .3s linear, color .3s linear;
+}
+
+.col-xl-5:hover {
+    background: rgba(75, 70, 104, 0.4);
 }
 
 .alert-incorrecto {
@@ -106,6 +111,7 @@ button {
 .iconos {
     font-size: 1.949vw;
     background: #fff;
+    padding: 10px 0;
 }
 
 .twitter {
