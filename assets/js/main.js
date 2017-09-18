@@ -127,7 +127,7 @@ const quiz = {
         for (var i = 0; i < sessionStorage.length; i++) {
             let pregunta = sessionStorage.key(i);
             let respuesta = sessionStorage.getItem(pregunta);
-            $("#selecciona").append(`<div><p>${i+1}. ${pregunta}:</p><p class='parrafoRespuesta'><strong> ${respuesta}</strong></p></div>`);
+            $("#selecciona").append(`<div class='div-pregunta-respuesta'><p class='parrafoPregunta'>${i+1}. ${pregunta}:</p><p class='parrafoRespuesta'><strong> ${respuesta}</strong></p></div>`);
         }
     },
     comprobarRespuestas: () => {
