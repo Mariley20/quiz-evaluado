@@ -5,6 +5,10 @@ body {
     background-color: #fff3ec;
 }
 /*vh es para la altura , vw letras 1. - 3*/
+.row{
+    padding: 0;
+    margin: 0;
+}
 #imagen img {
     height: 35vh;
     margin-top: 5px;
@@ -76,6 +80,9 @@ button {
 
 }
 /*iconos*/
+.iconos {
+    font-size: 1.949vw;
+}
 .twitter{
     color: #0084b4;
 }
