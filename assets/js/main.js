@@ -58,12 +58,15 @@ const quiz = {
     ],
     incrementoPorcentaje: 0,
     preguntaInicio: 0,
+    comprobar: false,
     iniciaQuiz: () => {
         quiz.preguntasHTML();
         quiz.configuracion();
     },
     configuracion: () => {
         $('.col-xl-6').on("click", quiz.siguientePregunta);
+        $('#resolver').click(quiz.comprobarRespuestas);
+        $('#jugar').click(quiz.iniciaQuiz);
     },
     siguientePregunta: (event) => {
         let respuesta = event.target.textContent;
@@ -71,9 +74,10 @@ const quiz = {
         quiz.preguntaInicio++;
         quiz.limpiarCuestionario();
         if (quiz.preguntaInicio >= quiz.trivial.length) {
-            quiz.respuestasHTML();
             quiz.preguntaInicio = 0;
             quiz.incrementoPorcentaje = 0;
+            quiz.respuestasHTML();
+            quiz.configuracion();
         } else {
             quiz.iniciaQuiz();
         }
@@ -109,14 +113,45 @@ const quiz = {
         $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
         $('#cuestionario').append(`<div class="progress">\
         <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
-        </div>`);
-        for (var i = 0; i < sessionStorage.length; i++) {
-            let pregunta = sessionStorage.key(i);
-            let respuesta = sessionStorage.getItem(pregunta);
-            $("#cuestionario").append(`<div><label>${pregunta}</label>
-			<p>${respuesta}</p></div>`);
+        </div>\
+        <h2>Tus Respuestas son: </h2>`);
+        quiz.preguntaRespuesta();
+        $('#cuestionario').append(`<div><button id='resolver'>Resolver</button></div>`);
+    },
+    preguntaRespuesta: () => {
+        if (quiz.comprobar) {
+            quiz.limpiarCuestionario();
+            for (var i = 0; i < sessionStorage.length; i++) {
+                let pregunta = sessionStorage.key(i);
+                let respuesta = sessionStorage.getItem(pregunta);
+                let indice;
+                quiz.trivial.filter((index, s) => {
+                    if (pregunta == index.pregunta) {
+                        return indice = s;
+                    }
+                });
+                if (respuesta == quiz.trivial[indice].rptaCorrecta) {
+                    $("#cuestionario").append(`<div class="alert alert-success" role="alert"><p>${pregunta}:<strong> ${respuesta}</strong></p></div>`);
+
+                } else {
+                    $("#cuestionario").append(`<div class="alert alert-danger" role="alert"><p>${pregunta}: <strong><del>${respuesta}</del></strong>${quiz.trivial[indice].rptaCorrecta}</p></div>`);
+                }
+            }
+            $('#cuestionario').append(`<div><button id='jugar'>Jugar de Nuevo</button></div>`)
+            quiz.configuracion();
+        } else {
+            for (var i = 0; i < sessionStorage.length; i++) {
+                let pregunta = sessionStorage.key(i);
+                let respuesta = sessionStorage.getItem(pregunta);
+                $("#cuestionario").append(`<div><p>${pregunta}: ${respuesta}</p></div>`);
+            }
         }
-       
+    },
+    comprobarRespuestas: () => {
+        console.log('entro')
+        quiz.comprobar = true;
+
+        quiz.preguntaRespuesta();
     }
 }
 $(document).ready(quiz.iniciaQuiz)
