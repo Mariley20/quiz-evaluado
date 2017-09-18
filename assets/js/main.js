@@ -58,7 +58,7 @@ const quiz = {
     ],
     incrementoPorcentaje: 0,
     preguntaInicio: 0,
-    comprobar: false,
+    rptasCorrectas: 0,
     iniciaQuiz: () => {
         quiz.limpiarCuestionario();
         quiz.preguntasHTML();
@@ -76,11 +76,11 @@ const quiz = {
         quiz.limpiarCuestionario();
         if (quiz.preguntaInicio >= quiz.trivial.length) {
             quiz.preguntaInicio = 0;
-            quiz.incrementoPorcentaje = 0;
             quiz.respuestasHTML();
             quiz.configuracion();
         } else {
             quiz.iniciaQuiz();
+            
         }
     },
     guardarDatos: (respuesta) => {
@@ -111,11 +111,12 @@ const quiz = {
         $('#imagen').empty();
     },
     respuestasHTML: () => {
+        console.log(quiz.incrementoPorcentaje)
         $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
         $('#cuestionario').append(`<div class="progress">\
-        <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
-        </div>\
-        <h2>Tus Respuestas son: </h2>`);
+            <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+            </div>\
+            <h2>Tus Respuestas son: </h2>`);
         quiz.preguntaRespuesta();
         $('#cuestionario').append(`<div><button id='resolver'>Resolver</button></div>`);
     },
@@ -128,6 +129,11 @@ const quiz = {
     },
     comprobarRespuestas: () => {
         quiz.limpiarCuestionario();
+        $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
+        $('#cuestionario').append(`<div class="progress">\
+            <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+            </div>\
+            <h2>${quiz.rptasCorrectas} de ${quiz.trivial.length}</h2>`);
         for (var i = 0; i < sessionStorage.length; i++) {
             let pregunta = sessionStorage.key(i);
             let respuesta = sessionStorage.getItem(pregunta);
@@ -139,13 +145,16 @@ const quiz = {
             });
             if (respuesta == quiz.trivial[indice].rptaCorrecta) {
                 $("#cuestionario").append(`<div class="alert alert-success" role="alert"><p>${pregunta}:<strong> ${respuesta}</strong></p></div>`);
-
+                quiz.rptasCorrectas += 1;
             } else {
                 $("#cuestionario").append(`<div class="alert alert-danger" role="alert"><p>${pregunta}: <strong><del>${respuesta}</del></strong>${quiz.trivial[indice].rptaCorrecta}</p></div>`);
+                
             }
         }
-        $('#cuestionario').append(`<div><button id='jugar'>Jugar de Nuevo</button></div>`)
+        $('#cuestionario').append(`<div><button id='jugar'>Jugar de Nuevo</button></div>`);
+        quiz.incrementoPorcentaje = 0;        
         quiz.configuracion();
-    }
+    },
+    respuestasCorrectas: () => {}
 }
 $(document).ready(quiz.iniciaQuiz)
