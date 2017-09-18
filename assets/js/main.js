@@ -65,7 +65,9 @@ const quiz = {
     configuracion: () => {
         $('.col-xl-6').on("click", quiz.siguientePregunta);
     },
-    siguientePregunta: () => {
+    siguientePregunta: (event) => {
+        let respuesta = event.target.textContent;
+        quiz.guardarDatos(respuesta)
         quiz.preguntaInicio++;
         if (quiz.preguntaInicio >= quiz.trivial.length) {
             quiz.preguntaInicio = 0;
@@ -74,6 +76,9 @@ const quiz = {
             quiz.limpiarCuestionario();
             quiz.iniciaQuiz();
         }
+    },
+    guardarDatos: (respuesta) =>{
+        localStorage.setItem(quiz.trivial[quiz.preguntaInicio].pregunta, respuesta);
     },
     dibujarHTML: () => {
         $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid' id="imagen">`)
@@ -98,6 +103,9 @@ const quiz = {
     limpiarCuestionario: () => {
         $('#cuestionario').empty();
         $('#imagen').empty();
+    },
+    htmlFinal : () =>{
+        $('#cuestionario').append(``)
     }
 }
 $(document).ready(quiz.iniciaQuiz)
