@@ -8,6 +8,30 @@ body {
 #cuestionario {
     box-shadow: 4px 6px 38px hsla(0,100%,79%,.3);
 }
+.progress-bar{
+    background-color: #4b4668;
+}
+h2 {
+    font-size: 20px;
+    font-size: 3vw;
+	padding: 10px;
+}
+.col-xl-5{
+    background-color: #edecf0;
+    color: #4b4668;
+    font-size: 24px;
+    font-size: 2vw;
+    font-weight: 700;
+    margin: 0 20px 15px;
+    border: 1px solid #4b4668;
+    padding: 6px 44px 6px 14px;
+    width: 100%;
+    text-align: left;
+    transition: background-color .3s linear,border-color .3s linear,color .3s linear;
+}
 #imagen img {
     height: 35vh;
+    margin-top: 5px;
+    margin: 15px;
+    box-shadow: 4px 6px 38px hsl(249, 20%, 34%);
 }

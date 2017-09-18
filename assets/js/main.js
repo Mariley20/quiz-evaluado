@@ -65,7 +65,7 @@ const quiz = {
         quiz.configuracion();
     },
     configuracion: () => {
-        $('.col-xl-6').on("click", quiz.siguientePregunta);
+        $('.col-xl-5').on("click", quiz.siguientePregunta);
         $('#resolver').click(quiz.comprobarRespuestas);
         $('#jugar').click(quiz.iniciaQuiz);
     },
@@ -80,7 +80,7 @@ const quiz = {
             quiz.configuracion();
         } else {
             quiz.iniciaQuiz();
-            
+
         }
     },
     guardarDatos: (respuesta) => {
@@ -90,18 +90,18 @@ const quiz = {
         $('#imagen').append(`<img src='${quiz.trivial[quiz.preguntaInicio].srcImg}' class='img-fluid'>`)
         $('#cuestionario').append(
             `<div class="progress">\
-                  <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+                  <div class="progress-bar" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 7px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
             </div>\
-            <div class="row justify-content-xs-center ">\
-                <div class="col-xl-8">${quiz.trivial[quiz.preguntaInicio].pregunta}</div>\
-            </div>\
-            <div class="row justify-content-xs-center ">
-                <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[0]}</div>\
-                <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[1]}</div>\
+            <div class="row justify-content-xl-center ">\
+                <div class="col-xl-12 col-sm-12"><h2>${quiz.trivial[quiz.preguntaInicio].pregunta}</h2></div>\
             </div>\
             <div class="row justify-content-xs-center ">
-            <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[2]}</div>\
-            <div class="col-xl-6">${quiz.trivial[quiz.preguntaInicio].opciones[3]}</div>\
+                <div class="col-xl-5 col-sm-5">${quiz.trivial[quiz.preguntaInicio].opciones[0]}</div>\
+                <div class="col-xl-5 col-sm-5">${quiz.trivial[quiz.preguntaInicio].opciones[1]}</div>\
+            </div>\
+            <div class="row justify-content-xs-center ">
+            <div class="col-xl-5 col-sm-5">${quiz.trivial[quiz.preguntaInicio].opciones[2]}</div>\
+            <div class="col-xl-5 col-sm-5">${quiz.trivial[quiz.preguntaInicio].opciones[3]}</div>\
             </div>`
         );
         quiz.incrementoPorcentaje += 20;
@@ -114,7 +114,7 @@ const quiz = {
         console.log(quiz.incrementoPorcentaje)
         $('#imagen').append(`<img src='assets/img/terminaste.gif' class='img-fluid'>`);
         $('#cuestionario').append(`<div class="progress">\
-            <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+            <div class="progress-bar" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 7px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
             </div>\
             <h2>Tus Respuestas son: </h2>`);
         quiz.preguntaRespuesta();
@@ -144,15 +144,15 @@ const quiz = {
                 quiz.rptasCorrectas += 1;
             } else {
                 $("#cuestionario").append(`<div class="alert alert-danger" role="alert"><p>${pregunta}: <strong><del>${respuesta}</del></strong>${quiz.trivial[indice].rptaCorrecta}</p></div>`);
-                
+
             }
         }
         $('#cuestionario').append(`<div><button id='jugar'>Jugar de Nuevo</button></div>`);
         $('#cuestionario').prepend(`<div class="progress">\
-        <div class="progress-bar bg-success" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 10px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
+        <div class="progress-bar" role="progressbar" style="width: ${quiz.incrementoPorcentaje}%; height: 7px;" aria-valuenow="25" aria-valuemin="0" aria-valuemax="100"></div>\
         </div>\
         <h2>${quiz.rptasCorrectas} correcta(s) de ${quiz.trivial.length} preguntas</h2>`);
-        quiz.incrementoPorcentaje = 0;        
+        quiz.incrementoPorcentaje = 0;
         quiz.configuracion();
     },
     respuestasCorrectas: () => {}
