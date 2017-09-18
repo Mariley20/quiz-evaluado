@@ -127,7 +127,7 @@ const quiz = {
         for (var i = 0; i < sessionStorage.length; i++) {
             let pregunta = sessionStorage.key(i);
             let respuesta = sessionStorage.getItem(pregunta);
-            $("#selecciona").append(`<div><p>${i+1}. ${pregunta}:</p><p><strong> ${respuesta}</strong></p></div>`);
+            $("#selecciona").append(`<div><p>${i+1}. ${pregunta}:</p><p class='parrafoRespuesta'><strong> ${respuesta}</strong></p></div>`);
         }
     },
     comprobarRespuestas: () => {
@@ -143,10 +143,10 @@ const quiz = {
                 }
             });
             if (respuesta == quiz.trivial[indice].rptaCorrecta) {
-                $("#selecciona").append(`<div class="alert-correcto" role="alert"><p>${i+1}. ${pregunta}: </p><p><strong> ${respuesta}</strong></p></div>`);
+                $("#selecciona").append(`<div class="alert-correcto" role="alert"><p>${i+1}. ${pregunta}: </p><p class='parrafoRespuesta'> <strong> ${respuesta}</strong></p></div>`);
                 quiz.rptasCorrectas += 1;
             } else {
-                $("#selecciona").append(`<div class="alert-incorrecto" role="alert"><p>${i+1}. ${pregunta}: </p><p><strong><del>${respuesta} </del></strong>${quiz.trivial[indice].rptaCorrecta}</p></div>`);
+                $("#selecciona").append(`<div class="alert-incorrecto" role="alert"><p>${i+1}. ${pregunta}: </p><p class='parrafoRespuesta'> <strong><del>${respuesta} </del></strong>${quiz.trivial[indice].rptaCorrecta}</p></div>`);
 
             }
         }
